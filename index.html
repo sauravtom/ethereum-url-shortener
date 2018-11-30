@@ -1,272 +1,145 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <title>Ethereum URL Shortner</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ethereum URL Shortener</title>
+    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.7.2-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
+
     <style type="text/css">
-        body {
-            width:100%;
-            background-color: #f0f0f2;
-            margin: 0;
-            padding: 0;
-            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        .hero.is-fullheight .hero-body, .hero.is-fullheight-with-navbar .hero-body, .hero.is-halfheight .hero-body{
+            align-items: normal !important;
+        }
+        .center{
             text-align: center;
-            
         }
-        .container {
-            width: 600px;
-            margin: 5em auto;
-            padding: 50px;
-            background-color: #fff;
-            border-radius: 1em;
-        }
-        a:link, a:visited {
-            color: #38488f;
-            text-decoration: none;
-        }
-        @media (max-width: 700px) {
-            body {
-                background-color: #fff;
-            }
-            div {
-                width: auto;
-                margin: 0 auto;
-                border-radius: 0;
-                padding: 1em;
-            }
-        }
-    </style>    
+    </style>
 </head>
 
 <body>
-<div class='container'>
-    <h2>Ethereum URL Shortner</h2>
-    <br>
-    <span>
-        <input id="url" type="text" placeholder="enter url here" style="width:200px" />
-        <button id='generate' onclick="shorten()">Generate Short URL</button>
-    </span>
-    <br><br>
-    <span>
-        <img id='spinner' style="width:100px" src="images/spinner.gif">
-        <p id='info'></p>
-    </span>
-    <a href="https://github.com/sauavtom/ethereum-url-shortener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <section class="hero is-info is-fullheight">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <!-- <a class="navbar-item" href="../">
+                            <img src="http://bulma.io/images/bulma-type-white.png" alt="Logo">
+                        </a> -->
+                        <span class="navbar-burger burger" data-target="navbarMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenu" class="navbar-menu">
+                        <div class="navbar-end">
+                            
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined" target='_blank' href="https://ethfiddle.com/xR5sZrU10t">
+                                    <span class="icon">
+                                        <i class="fa fa-book"></i>
+                                    </span>
+                                    <span>View Smart Contract</span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined" target='_blank' href="https://github.com/sauravtom/ethereum-url-shortener">
+                                    <span class="icon">
+                                        <i class="fa fa-github"></i>
+                                    </span>
+                                    <span>View Source</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            </div>
 
-</div>
+            <div class="modal">
+              <div class="modal-background"></div>
+              <div class="modal-card">
+                <header class="modal-card-head">
+                  <p class="modal-card-title">Metamask not detected!!</p>
+                  <button class="delete close" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body" style="color:black">
+                    <img style="width:100%" src="https://metamask.io/img/ethereum-metamask-chrome.png">
+                  <p>Please enable <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en">METAMASK(ropsten network)</a> to continue. Metamask is used to generate and store short urls on the ethereum blockchian, you may use the shortened urls without Metamask.</p>
+                </section>
+
+              </div>
+            </div>
+
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <br><br>
+                    <div class="column is-6 is-offset-3">
+                        <!-- <h1 class="title">
+                            URL Shortener
+                        </h1>
+                        <h2 class="subtitle">
+                            Powered by Ethereum
+                        </h2> -->
+                        <div class="box">
+                            <div class="field is-grouped">
+                                <p class="control is-expanded">
+                                    <input id='url' class="input" type="text" placeholder="Long URL">
+                                </p>
+                                <p class="control">
+                                    <a id='generate' onclick="shorten()" class="button is-info">
+                                        Generate Short URL
+                                    </a>
+                                </p>
+                            </div>
+                            <div>
+                                <img id='spinner' style="width:100px" src="images/spinner.gif">
+                                <p id='info'></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js" charset="utf-8" type="text/javascript">
+    </script>
+    <script async type="text/javascript" src="scripts/app.js"></script>
+    <script>
+        (function(d, h, m){
+            var js, fjs = d.getElementsByTagName(h)[0];
+            if (d.getElementById(m)){return;}
+            js = d.createElement(h); js.id = m;
+            js.onload = function(){
+                window.makerWidgetComInit({
+                position: "right",          
+                widget: "mqdcmnk3szpig9ta-2k5sfsqvnntd6pjy-11mt0bom2sqq66si"                
+            })};
+            js.src = "https://makerwidget.com/js/embed.js";
+            fjs.parentNode.insertBefore(js, fjs)
+        }(document, "script", "dhm"))
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97201267-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-97201267-2');
+    </script>
+
 </body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.ethers.io/scripts/ethers-v4.min.js" charset="utf-8" type="text/javascript">
-</script>
-<script>
-    (function(d, h, m){
-        var js, fjs = d.getElementsByTagName(h)[0];
-        if (d.getElementById(m)){return;}
-        js = d.createElement(h); js.id = m;
-        js.onload = function(){
-            window.makerWidgetComInit({
-            position: "right",          
-            widget: "mqdcmnk3szpig9ta-2k5sfsqvnntd6pjy-11mt0bom2sqq66si"                
-        })};
-        js.src = "https://makerwidget.com/js/embed.js";
-        fjs.parentNode.insertBefore(js, fjs)
-    }(document, "script", "dhm"))
-</script>
 
-<script type="text/javascript">
-    var contract;
-
-    String.prototype.format = String.prototype.f = function() {
-        var s = this,
-            i = arguments.length;
-
-        while (i--) {
-            s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
-        }
-        return s;
-    };
-
-    $(document).ready(function() {
-        $("#spinner").hide();
-        initContract();
-        redirect();
-        MakerBadge.init({
-                id: 'sauravtom', // Product Hunt ID
-                theme: 1, // 3 Themes: 1, 2 or 3
-                name: 'Saurav', // Use any name you want
-                twitter: '@sauravtom', // Link to twitter
-                position: 'right', // left or right
-                customHTML: '<div>' //custom embeds e.g. buy me a coffee
-              });
-    })
-
-    const isValidUrl = (string) => {
-      try {
-        new URL(string);
-        return true;
-      } catch (_) {
-        return false;  
-      }
-    }
-
-    async function redirect(){
-        var id = window.location.href.split('?id=')[1]
-        if(!id){
-            return
-        }
-        try{
-            $('body').hide();
-            var url = await contract.getLink(id);
-            window.location.href = url[1];
-        }catch(err){
-            return window.alert("INVALID ID VALUE"); 
-        }
-    }
-
-    function initContract() {
-        let provider = new ethers.providers.Web3Provider(web3.currentProvider);
-        let address = "0x4b8241f24537d2539d0b310bc074fd68a782e182";
-        let abi = [
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "url",
-                        "type": "string"
-                    }
-                ],
-                "name": "createNewLink",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": false,
-                        "name": "message",
-                        "type": "string"
-                    }
-                ],
-                "name": "Log",
-                "type": "event"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": false,
-                        "name": "linkId",
-                        "type": "uint256"
-                    },
-                    {
-                        "indexed": false,
-                        "name": "url",
-                        "type": "string"
-                    }
-                ],
-                "name": "LinkAdded",
-                "type": "event"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "linkId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "getLink",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "address"
-                    },
-                    {
-                        "name": "",
-                        "type": "string"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "linkMapping",
-                "outputs": [
-                    {
-                        "name": "userAddress",
-                        "type": "address"
-                    },
-                    {
-                        "name": "url",
-                        "type": "string"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ]
-
-        contract = new ethers.Contract(address, abi, provider.getSigner());
-        console.log('e0x Contract Initiated');
-    }
-
-    async function shorten() {
-        url = document.getElementById("url").value;
-        if(!url){
-          return window.alert("URL VALUE IS EMPTY");
-        }
-        if(!isValidUrl(url)){
-          return window.alert("INVALID URL");
-        }
-        $("#info").html(""); 
-        $("#spinner").show();
-        $('#generate').prop('disabled', true);
-        tx = await contract.createNewLink(url);
-        console.log(tx.hash);
-
-        $("#info").prepend( "<p>waiting for transaction to be mined</p><br>" );
-
-
-        contract.on("LinkAdded", (linkId, linkUrl) => {
-            if(linkUrl !== url){
-                console.log('NOT MY EVENT');
-                return
-            }
-            $("#info").html( "<p>transaction confirmed</p> <a target='_blank' href='https://ropsten.etherscan.io/tx/{0}'>view tx on blockchain</a><br>".f(tx.hash) );
-            var shortUrl = '{0}/?id={1}'.f(window.location.origin, linkId.toNumber())
-            $("#info").prepend( "Short URL: <a target='_blank' href='{0}'>{0}</a><br>".f(shortUrl) );
-            console.log("EVENT LISTENER", shortUrl, linkId.toNumber(), linkUrl);
-            $("#spinner").hide();
-            $('#generate').prop('disabled', false);
-        });
-    }
-
-
-</script>
 
 </html>

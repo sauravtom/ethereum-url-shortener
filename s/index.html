@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+<body>
+<div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js" charset="utf-8" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        var contract;
+        var wallet;
+        var provider;
+
+        $(document).ready(function() {
+            initContract();
+            redirect();
+        })
+
+        function initContract() {
+            let address = "0x4b8241f24537d2539d0b310bc074fd68a782e182";
+            let abi = [
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "url",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "createNewLink",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "message",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "Log",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "linkId",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "url",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "LinkAdded",
+                    "type": "event"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "linkId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "getLink",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "linkMapping",
+                    "outputs": [
+                        {
+                            "name": "userAddress",
+                            "type": "address"
+                        },
+                        {
+                            "name": "url",
+                            "type": "string"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ]
+            provider = ethers.getDefaultProvider('ropsten');
+            wallet = ethers.Wallet.createRandom();
+            wallet = wallet.connect(provider);
+            contract = new ethers.Contract(address, abi, wallet);
+        }
+
+        async function redirect(){
+            var id = window.location.href.split('?id=')[1]
+            if(!id){
+                return
+            }
+            try{
+                $('body').hide();
+                var url = await contract.getLink(id);
+                window.location.href = url[1];
+            }catch(err){
+                return window.alert("INVALID ID VALUE"); 
+            }
+        }
+
+
+    </script>
+</div>
+</body>
+</html>

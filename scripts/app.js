@@ -172,7 +172,7 @@ async function shorten() {
             return
         }
         $("#info").html( "<p>transaction confirmed</p> <a target='_blank' href='https://ropsten.etherscan.io/tx/{0}'>view tx on blockchain</a><br>".f(tx.hash) );
-        var shortUrl = '{0}/?id={1}'.f(window.location.origin, linkId.toNumber())
+        var shortUrl = '{0}/s?id={1}'.f(window.location.origin, linkId.toNumber())
         $("#info").prepend( "Short URL: <a target='_blank' href='{0}'>{0}</a><br>".f(shortUrl) );
         console.log("EVENT LISTENER", shortUrl, linkId.toNumber(), linkUrl);
         $("#spinner").hide();

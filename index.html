@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ethereum URL Shortener</title>
-    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <!-- Bulma Version 0.7.2-->
@@ -20,29 +20,54 @@
         .center{
             text-align: center;
         }
+        .smaller{
+            font-size: 60%;
+        }
+        .small{
+            font-size: 70%;
+        }
+        .trucate{
+            text-overflow: ellipsis
+            width: 50px;
+        }
+        table > a {
+            color: hotpink !important;
+        }
     </style>
 </head>
 
 <body>
+    
     <section class="hero is-info is-fullheight">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <!-- <a class="navbar-item" href="../">
-                            <img src="http://bulma.io/images/bulma-type-white.png" alt="Logo">
-                        </a> -->
-                        <span class="navbar-burger burger" data-target="navbarMenu">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </div>
+                        <a class="navbar-item" target='_blank' href="https://0x.now.sh/s?id=37">
+                          <img src="images/sponsor.png" alt="CoinMonks" style="padding-right: 4px;">
+                          <span>Sponsored by Coinmonks</span>
+                        </a>
+
+                        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </div>
+                    
                     <div id="navbarMenu" class="navbar-menu">
+                        
                         <div class="navbar-end">
-                            
                             <span class="navbar-item">
-                                <a class="button is-white is-outlined" target='_blank' href="https://ropsten.etherscan.io/address/0x4b8241f24537d2539d0b310bc074fd68a782e182">
+                                <a class="button is-white is-outlined" target='_blank' href="https://hackernoon.com/making-a-decentralized-url-shortener-using-ethereum-4fdfccf712a6">
+                                    <span class="icon">
+                                        <i class="fa fa-puzzle-piece"></i>
+                                    </span>
+                                    <span>How it works</span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined recent-btn" href="#">
                                     <span class="icon">
                                         <i class="fa fa-book"></i>
                                     </span>
@@ -63,8 +88,8 @@
             </nav>
             </div>
 
-            <div class="modal">
-              <div class="modal-background"></div>
+            <div class="modal metamask-modal">
+              <div class="modal-background close"></div>
               <div class="modal-card">
                 <header class="modal-card-head">
                   <p class="modal-card-title">Metamask not detected!!</p>
@@ -73,6 +98,46 @@
                 <section class="modal-card-body" style="color:black">
                     <img style="width:100%" src="https://metamask.io/img/ethereum-metamask-chrome.png">
                   <p>Please enable <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en">METAMASK(ropsten network)</a> to continue. Metamask is used to generate and store short urls on the ethereum blockchian, you may continue to use the shortened urls without Metamask. Eg <a target="_blank" href="https://0x.now.sh/s?id=23">0x.now.sh/s?id=23</a> </p>
+                </section>
+
+              </div>
+            </div>
+
+            <div class="modal metamask-network-modal">
+              <div class="modal-background close"></div>
+              <div class="modal-card">
+                <header class="modal-card-head">
+                  <p class="modal-card-title">Metamask -> Ropsten</p>
+                  <button class="delete close" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body" style="color:black">
+                  <p>Please switch Metamask to Ropsten network to proceed</p>
+                </section>
+
+              </div>
+            </div>
+
+            <div class="modal transactions-modal">
+              <div class="modal-background close"></div>
+              <div class="modal-card">
+                <header class="modal-card-head">
+                  <p class="modal-card-title">Recently Shortened URLs</p>
+                  <button class="delete close" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body" style="color:black">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Long URL</th>
+                          <th>Short URL</th>
+                          <th>Block Height</th>
+                          <th>View on Etherscan</th>
+                        </tr>
+                      </thead>
+                      <tbody id='tx-table'>
+                        
+                      </tbody>
+                    </table>
                 </section>
 
               </div>

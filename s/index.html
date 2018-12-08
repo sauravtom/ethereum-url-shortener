@@ -21,6 +21,7 @@
         var contract;
         var wallet;
         var provider;
+        var MyContract, myContractInstance, events;
 
         $(document).ready(function() {
             initContract();
@@ -135,7 +136,9 @@
             wallet = ethers.Wallet.createRandom();
             wallet = wallet.connect(provider);
             contract = new ethers.Contract(address, abi, wallet);
+            console.log(contract);
         }
+
 
         async function redirect(){
             var id = window.location.href.split('?id=')[1]

@@ -1,4 +1,6 @@
 var contract;
+var address;
+var abi;
 
 String.prototype.format = String.prototype.f = function() {
     var s = this,
@@ -14,10 +16,16 @@ $(document).ready(function() {
     $("#spinner").hide();
     detectWeb3();
     initContract();
+    checkNetwork();
+    batchEvents(abi, address);
 })
 
 $(".close").click(function() {
    $(".modal").removeClass("is-active");
+});
+
+$(".recent-btn").click(function() {
+   $(".transactions-modal").addClass("is-active");
 });
 
 function detectWeb3(){
@@ -25,9 +33,23 @@ function detectWeb3(){
       // Use Mist/MetaMask's provider
       web3 = new Web3(web3.currentProvider);
     } else {
-        $(".modal").addClass("is-active");
+        $(".metamask-modal").addClass("is-active");
         console.log('METAMASK NOT DETECTED');
     }
+}
+
+function checkNetwork(){
+    console.log('CHECKING NETWORK');
+
+    contract.getLink(1)
+    .then((output) => {
+      console.log('OUTPUT',output);
+    })
+    .catch((err) => {
+        console.log('ERROR',err);
+        $(".metamask-network-modal").addClass("is-active");
+    });
+    
 }
 
 const isValidUrl = (string) => {
@@ -41,8 +63,8 @@ const isValidUrl = (string) => {
 
 function initContract() {
     let provider = new ethers.providers.Web3Provider(web3.currentProvider);
-    let address = "0x4b8241f24537d2539d0b310bc074fd68a782e182";
-    let abi = [
+    address = "0x4b8241f24537d2539d0b310bc074fd68a782e182";
+    abi = [
         {
             "constant": false,
             "inputs": [
@@ -144,9 +166,33 @@ function initContract() {
             "type": "function"
         }
     ]
-
     contract = new ethers.Contract(address, abi, provider.getSigner());
     console.log('e0x Contract Initiated');
+}
+
+function batchEvents(abi, address) {
+    //batch listening of events
+    MyContract = web3.eth.contract(abi);
+    myContractInstance = MyContract.at(address);
+    events = myContractInstance.allEvents({event: 'LinkAdded', fromBlock: 0, toBlock: 'latest'});
+    
+    events.watch(function(error, result){
+      console.log(result);
+      //console.log(result.args.url, result.args.linkId.toNumber(), result.blockNumber, result.transactionHash);
+      
+      var shortUrl = '{0}/s?id={1}'.f(window.location.origin, result.args.linkId.toNumber());
+      var shorterUrl = shortUrl.replace('https://','');
+      var shorterUrl = shorterUrl.replace('http://','');
+      var row = "\
+        <tr>\
+          <td><p class='smaller'>{0}</p></td>\
+          <td style='min-width:133px'><a class='small' target='_blank' href='{1}'><strong>{2}</strong></a></td>\
+          <td><a target='_blank' href='https://ropsten.etherscan.io/block/{3}'><code>{3}</code></a></td>\
+          <td><a target='_blank' href='https://ropsten.etherscan.io/tx/{4}'>link</a></td>\
+        </tr>".f(result.args.url,shortUrl,shorterUrl,result.blockNumber,result.transactionHash);
+        //console.log(row);
+        $("#tx-table").prepend(row);
+    });
 }
 
 async function shorten() {
@@ -172,7 +218,7 @@ async function shorten() {
             return
         }
         $("#info").html( "<p>transaction confirmed</p> <a target='_blank' href='https://ropsten.etherscan.io/tx/{0}'>view tx on blockchain</a><br>".f(tx.hash) );
-        var shortUrl = '{0}/s?id={1}'.f(window.location.origin, linkId.toNumber())
+        var shortUrl = '{0}/s?id={1}'.f(window.location.origin, linkId.toNumber());
         $("#info").prepend( "Short URL: <a target='_blank' href='{0}'>{0}</a><br>".f(shortUrl) );
         console.log("EVENT LISTENER", shortUrl, linkId.toNumber(), linkUrl);
         $("#spinner").hide();

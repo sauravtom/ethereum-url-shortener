@@ -29,6 +29,7 @@ $(".recent-btn").click(function() {
 });
 
 function detectWeb3(){
+    window.ethereum.enable();
     if (typeof web3 !== 'undefined') {
       // Use Mist/MetaMask's provider
       web3 = new Web3(web3.currentProvider);

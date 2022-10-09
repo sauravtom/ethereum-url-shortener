@@ -62,7 +62,7 @@ const Home = () => {
             <span>URL Shortner</span>
           </div>
         </div>
-        <div className="font-[400] text-[16px] md:text-[20px]  text-center text-[#555555]">
+        <div className="font-[400] text-[16px] md:text-[16px]  text-center text-[#555555]">
           <span>
             Powered by
             <span className={styles.poly}> Polygon</span> Blockchain
@@ -109,7 +109,7 @@ const Home = () => {
           <div className="flex text-xs md:text-base px-2 flex-col md:flex-row items-center">
             <div className="my-1 flex items-center space-x-4">
               Short URL:{" "}
-              <span>{`${window.location.protocol}//${window.location.host}/t/${linkId}`}</span>
+              <span className="ml-1">{`${window.location.protocol}//${window.location.host}/t/${linkId}`}</span>
               <button
                 onClick={copyLink}
                 className="hover:bg-blue-500 hover:text-white ml-4 border px-2 py-1 rounded-md"
@@ -160,10 +160,15 @@ const Home = () => {
           </a>
         </div>
         <div>
-          <button className="hover:underline cursor-pointer flex justify-center items-center">
+          <a
+            href="https://github.com/sauravtom/ethereum-url-shortener/tree/2022"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:underline cursor-pointer flex justify-center items-center"
+          >
             <AiFillGithub />
             <span className="pl-1 ">Github</span>
-          </button>
+          </a>
         </div>
       </div>
     </div>

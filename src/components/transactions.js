@@ -53,7 +53,7 @@ const Transactions = () => {
 
   async function getTransactions() {
     let web3 = new Web3(
-      "https://polygon-mumbai.g.alchemy.com/v2/hxmQey4BoZrpBw85wfJCRinVg8HNg9uA"
+      "https://polygon-mainnet.g.alchemy.com/v2/GuktyzRAI96r65xJPehQgv2E5TU68R4o"
     );
     let MyContract = new web3.eth.Contract(
       NFT_CONTRACT_ABI,

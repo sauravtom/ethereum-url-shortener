@@ -4,7 +4,7 @@ export const providerOptions = {
   walletlink: {
     package: CoinbaseWalletSDK,
     options: {
-      appName: "TQR.LOL",
+      appName: "TinyQR",
       rpc: {
         80001: "https://rpc-mumbai.maticvigil.com",
       },

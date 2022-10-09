@@ -62,7 +62,7 @@ const Home = () => {
             <span>URL Shortner</span>
           </div>
         </div>
-        <div className="font-[400] text-[16px] md:text-[24px]  text-center text-[#555555]">
+        <div className="font-[400] text-[16px] md:text-[20px]  text-center text-[#555555]">
           <span>
             Powered by
             <span className={styles.poly}> Polygon</span> Blockchain
@@ -140,7 +140,7 @@ const Home = () => {
             </div>
 
             <div className="w-1/3 p-4 items-center justify-center">
-              View On Polyscan
+              View On Polygonscan
             </div>
           </div>
           <div>

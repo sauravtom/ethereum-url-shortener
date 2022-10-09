@@ -1,0 +1,21 @@
+.poly {
+  background-image: linear-gradient(
+    119.39deg,
+    #ff1f73 6.43%,
+    #8f1fff 49.87%,
+    #1fc8ff 91.42%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  background-repeat: no-repeat;
+  background-clip: text;
+  box-decoration-break: clone;
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 767px) {
+  .poly {
+    font-size: 20px;
+  }
+}

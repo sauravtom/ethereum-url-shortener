@@ -148,7 +148,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="mb-4 space-x-4 flex text-gray-600 justify-center items-center">
+      <div className="mb-2 space-x-4 flex text-gray-600 justify-center items-center">
         <div>
           <a
             href="https://hackernoon.com/making-a-decentralized-url-shortener-using-ethereum-4fdfccf712a6"
@@ -170,6 +170,16 @@ const Home = () => {
             <span className="pl-1 ">Github</span>
           </a>
         </div>
+      </div>
+      <div className="mb-2 space-x-4 flex text-gray-500 justify-center items-center">
+        <a
+          href="https://metalink.so"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline cursor-pointer flex justify-center items-center"
+        >
+          Made with ❤️ by Metalink
+        </a>
       </div>
     </div>
   );

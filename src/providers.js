@@ -6,9 +6,9 @@ export const providerOptions = {
     options: {
       appName: "TinyQR",
       rpc: {
-        80001: "https://rpc-mumbai.maticvigil.com",
+        137: "https://rpc-mumbai.maticvigil.com",
       },
-      chainId: 80001,
+      chainId: 137,
     },
   },
 };

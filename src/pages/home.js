@@ -20,7 +20,7 @@ const Home = () => {
       toast("Please connect wallet first");
       return;
     }
-    if (library && connectedChain !== 80001) {
+    if (library && connectedChain !== 137) {
       toast("Please switch to the Mumbai network");
       return;
     }

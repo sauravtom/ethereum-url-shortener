@@ -54,7 +54,7 @@ const Wallet = ({ library, setLibrary, setConnectedChain }) => {
       ) : (
         <div>
           <div className="flex flex-col md:flex-row md:space-y-0 space-y-2">
-            {chainId === 80001 && (
+            {chainId === 137 && (
               <button
                 onClick={() => switchNetwork(library, setChainId)}
                 className="hover:bg-black hover:text-white flex items-center justify-center border border-black rounded-full py-3 px-4"
@@ -67,7 +67,7 @@ const Wallet = ({ library, setLibrary, setConnectedChain }) => {
             )}
 
             <div className="flex items-center justify-center">
-              {chainId !== 80001 && (
+              {chainId !== 137 && (
                 <button
                   onClick={() =>
                     switchNetwork(library, setChainId, setConnectedChain)

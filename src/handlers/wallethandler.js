@@ -23,7 +23,7 @@ export const connectWallets = async (
     const { chainId } = await web3ModalProvider.getNetwork();
     setConnectedChain(chainId);
     setChainId(chainId);
-    if (chainId !== 80001) {
+    if (chainId !== 137) {
       toast("Please switch to the Mumbai network");
       throw new Error("Incorrect network");
     }
@@ -37,10 +37,10 @@ export const switchNetwork = async (library, setChainId, setConnectedChain) => {
   try {
     await library.provider.request({
       method: "wallet_switchEthereumChain",
-      params: [{ chainId: toHex(80001) }],
+      params: [{ chainId: toHex(137) }],
     });
-    setChainId(80001);
-    setConnectedChain(80001);
+    setChainId(137);
+    setConnectedChain(137);
   } catch (switchError) {
     if (switchError.code === 4902) {
       try {
@@ -48,19 +48,19 @@ export const switchNetwork = async (library, setChainId, setConnectedChain) => {
           method: "wallet_addEthereumChain",
           params: [
             {
-              chainId: toHex(80001),
-              chainName: "Polygon Mumbai test",
-              rpcUrls: ["https://rpc-mumbai.maticvigil.com"],
+              chainId: toHex(137),
+              chainName: "Polygon Mainnet",
+              rpcUrls: ["https://polygon-rpc.com"],
               nativeCurrency: {
                 decimals: 18,
                 symbol: "MATIC",
               },
-              blockExplorerUrls: ["https://mumbai.polygonscan.com"],
+              blockExplorerUrls: ["https://polygonscan.com"],
             },
           ],
         });
-        setChainId(80001);
-        setConnectedChain(80001);
+        setChainId(137);
+        setConnectedChain(137);
       } catch (error) {
         console.log(error);
       }

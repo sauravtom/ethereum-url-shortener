@@ -11,7 +11,7 @@
   background-repeat: no-repeat;
   background-clip: text;
   box-decoration-break: clone;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 @media only screen and (max-width: 767px) {

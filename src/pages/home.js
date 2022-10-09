@@ -129,7 +129,7 @@ const Home = () => {
       <div className=" mt-24 w-full lg:w-2/3 m-auto">
         <div className=" my-12 w-full md:w-2/3 mx-auto">
           <div className="font-[600] text-[16px] md:text-[24px]  text-center text-[#555555]">
-            Recently Shortened URLS
+            Recently Shortened URLs
           </div>
           <div className=" flex mt-4 items-center justify-center text-center bg-[#f5f7f8]  rounded-t-lg text-[10px] md:text-[14px] font-light ">
             <div className="w-1/3 p-4 items-center justify-center">

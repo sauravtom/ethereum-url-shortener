@@ -148,7 +148,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="mb-2 space-x-4 flex text-gray-600 justify-center items-center">
+      <div className="mb-4 space-x-4 flex text-gray-600 justify-center items-center">
         <div>
           <a
             href="https://hackernoon.com/making-a-decentralized-url-shortener-using-ethereum-4fdfccf712a6"

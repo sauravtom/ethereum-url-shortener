@@ -66,7 +66,7 @@ const Transactions = () => {
         toBlock: "latest",
       },
       function (error, events) {
-        setTransactions(events);
+        setTransactions(events.reverse());
       }
     );
   }

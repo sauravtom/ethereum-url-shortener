@@ -70,7 +70,13 @@ const Wallet = ({ library, setLibrary, setConnectedChain }) => {
               {chainId !== 137 && (
                 <button
                   onClick={() =>
-                    switchNetwork(library, setChainId, setConnectedChain)
+                    switchNetwork(
+                      library,
+                      setChainId,
+                      setConnectedChain,
+                      web3modal,
+                      setLibrary
+                    )
                   }
                   className="hover:bg-black hover:text-white flex items-center justify-center border border-black rounded-full py-3 px-4"
                 >

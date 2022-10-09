@@ -35,7 +35,7 @@ const Transactions = () => {
           </a>
 
           <a
-            href={`https://mumbai.polygonscan.com/tx/${transaction.transactionHash}`}
+            href={`https://polygonscan.com//tx/${transaction.transactionHash}`}
             className="cursor-pointer w-1/3 p-4 items-center justify-center text-blue-300 hover:underline"
             target="_blank"
             rel="noreferrer"

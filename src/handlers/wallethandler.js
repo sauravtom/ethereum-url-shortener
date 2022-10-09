@@ -24,7 +24,7 @@ export const connectWallets = async (
     setConnectedChain(chainId);
     setChainId(chainId);
     if (chainId !== 137) {
-      toast("Please switch to the Mumbai network");
+      toast("Please switch to the Polygon Mainnet network");
       throw new Error("Incorrect network");
     }
     return library;
@@ -33,12 +33,21 @@ export const connectWallets = async (
   }
 };
 
-export const switchNetwork = async (library, setChainId, setConnectedChain) => {
+export const switchNetwork = async (
+  library,
+  setChainId,
+  setConnectedChain,
+  web3modal,
+  setLibrary
+) => {
   try {
     await library.provider.request({
       method: "wallet_switchEthereumChain",
       params: [{ chainId: toHex(137) }],
     });
+    const web3ModalInstance = await web3modal.connect();
+    const newlibrary = new ethers.providers.Web3Provider(web3ModalInstance);
+    setLibrary(newlibrary);
     setChainId(137);
     setConnectedChain(137);
   } catch (switchError) {

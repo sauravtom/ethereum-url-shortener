@@ -21,7 +21,7 @@ const Home = () => {
       return;
     }
     if (library && connectedChain !== 137) {
-      toast("Please switch to the Mumbai network");
+      toast("Please switch to the Polygon Mainnet network");
       return;
     }
     setLoading(true);

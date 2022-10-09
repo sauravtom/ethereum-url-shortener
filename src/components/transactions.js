@@ -18,32 +18,25 @@ const Transactions = () => {
           key={index}
           className="flex  border-b items-center justify-center text-center text-[10px] md:text-xs  rounded-md"
         >
-          <div className="w-1/4 cursor-default p-4 items-center justify-center truncate">
+          <div className="w-1/3 cursor-default p-4 items-center justify-center truncate">
             {transaction.returnValues["1"]}
           </div>
           <a
             href={`${window.location.protocol}//${
               window.location.host
             }/t/${toHex(transaction.returnValues.linkId)}`}
-            className="w-1/4 p-4 items-center justify-center truncate"
+            className="w-1/3 p-4 items-center justify-center truncate"
             target="_blank"
             rel="noreferrer"
           >
-            {`${window.location.protocol}//${window.location.host}/t/${toHex(
+            {`${window.location.host}/t/${toHex(
               transaction.returnValues.linkId
             )}`}
           </a>
-          <a
-            href={`https://mumbai.polygonscan.com/block/${transaction.blockNumber}`}
-            className="w-1/4 p-4 items-center justify-center"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {transaction.blockNumber}
-          </a>
+
           <a
             href={`https://mumbai.polygonscan.com/tx/${transaction.transactionHash}`}
-            className="cursor-pointer w-1/4 p-4 items-center justify-center text-blue-300 hover:underline"
+            className="cursor-pointer w-1/3 p-4 items-center justify-center text-blue-300 hover:underline"
             target="_blank"
             rel="noreferrer"
           >

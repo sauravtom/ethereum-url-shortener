@@ -4,7 +4,7 @@ import { connectWallets, switchNetwork } from "../handlers/wallethandler";
 import { providerOptions } from "../providers";
 import toast, { Toaster } from "react-hot-toast";
 
-const Wallet = ({ library, setLibrary }) => {
+const Wallet = ({ library, setLibrary, setConnectedChain }) => {
   const [web3Provider, setWeb3Provider] = useState(null);
 
   const [chainId, setChainId] = useState("");
@@ -20,7 +20,8 @@ const Wallet = ({ library, setLibrary }) => {
         setChainId,
         setWeb3Provider,
         web3modal,
-        toast
+        toast,
+        setConnectedChain
       );
     } catch (error) {
       console.log(error);
@@ -29,6 +30,7 @@ const Wallet = ({ library, setLibrary }) => {
 
   const refreshState = () => {
     setChainId();
+    setConnectedChain();
     setWeb3Provider(null);
   };
 
@@ -44,9 +46,9 @@ const Wallet = ({ library, setLibrary }) => {
       {web3Provider === null ? (
         <button
           onClick={connectWallet}
-          className="flex items-center text-xs md:text-base justify-center border border-black rounded-full py-2 px-2"
+          className="hover:bg-black hover:text-white flex items-center text-xs md:text-base justify-center border border-black rounded-full py-3 px-4"
         >
-          <div className="p-1 ml-2  bg-red-400 rounded-full mr-1"></div>
+          <div className="p-1 bg-red-400 rounded-full mr-2"></div>
           Connect Wallet
         </button>
       ) : (
@@ -55,9 +57,9 @@ const Wallet = ({ library, setLibrary }) => {
             {chainId === 80001 && (
               <button
                 onClick={() => switchNetwork(library, setChainId)}
-                className="flex items-center justify-center border border-black rounded-full py-2 px-2"
+                className="hover:bg-black hover:text-white flex items-center justify-center border border-black rounded-full py-3 px-4"
               >
-                <div className="p-1 ml-2 bg-green-400 rounded-full mr-1"></div>
+                <div className="p-1 bg-green-400 rounded-full mr-2"></div>
                 <p className="truncate w-[120px]">
                   {web3Provider.provider.selectedAddress}
                 </p>
@@ -67,19 +69,21 @@ const Wallet = ({ library, setLibrary }) => {
             <div className="flex items-center justify-center">
               {chainId !== 80001 && (
                 <button
-                  onClick={() => switchNetwork(library, setChainId)}
-                  className="flex items-center justify-center border border-black rounded-full py-2 px-2"
+                  onClick={() =>
+                    switchNetwork(library, setChainId, setConnectedChain)
+                  }
+                  className="hover:bg-black hover:text-white flex items-center justify-center border border-black rounded-full py-3 px-4"
                 >
-                  <div className="p-1 ml-2 bg-red-400 rounded-full mr-1"></div>
+                  <div className="p-1 bg-red-400 rounded-full mr-2"></div>
                   Switch Network
                 </button>
               )}
               <div className="pl-2">
                 <button
                   onClick={disconnect}
-                  className="flex items-center justify-center border border-black rounded-full py-2 px-2 "
+                  className="hover:bg-black hover:text-white flex items-center justify-center border border-black rounded-full py-3 px-4 "
                 >
-                  <div className="p-1 ml-2 bg-red-400 rounded-full mr-1"></div>
+                  <div className=" p-1 bg-red-400 rounded-full mr-2"></div>
                   Disconnect
                 </button>
               </div>

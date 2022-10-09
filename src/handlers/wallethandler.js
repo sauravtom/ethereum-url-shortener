@@ -6,7 +6,8 @@ export const connectWallets = async (
   setChainId,
   setWeb3Provider,
   web3modal,
-  toast
+  toast,
+  setConnectedChain
 ) => {
   try {
     const web3ModalInstance = await web3modal.connect();
@@ -20,7 +21,7 @@ export const connectWallets = async (
       setWeb3Provider(web3ModalProvider);
     }
     const { chainId } = await web3ModalProvider.getNetwork();
-
+    setConnectedChain(chainId);
     setChainId(chainId);
     if (chainId !== 80001) {
       toast("Please switch to the Mumbai network");
@@ -32,13 +33,14 @@ export const connectWallets = async (
   }
 };
 
-export const switchNetwork = async (library, setChainId) => {
+export const switchNetwork = async (library, setChainId, setConnectedChain) => {
   try {
     await library.provider.request({
       method: "wallet_switchEthereumChain",
       params: [{ chainId: toHex(80001) }],
     });
     setChainId(80001);
+    setConnectedChain(80001);
   } catch (switchError) {
     if (switchError.code === 4902) {
       try {
@@ -58,6 +60,7 @@ export const switchNetwork = async (library, setChainId) => {
           ],
         });
         setChainId(80001);
+        setConnectedChain(80001);
       } catch (error) {
         console.log(error);
       }

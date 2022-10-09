@@ -13,8 +13,17 @@ const Home = () => {
   const [linkId, setLinkId] = useState("");
   const [loading, setLoading] = useState(false);
   const [library, setLibrary] = useState();
+  const [connectedChain, setConnectedChain] = useState("");
 
   async function initContract() {
+    if (!library) {
+      toast("Please connect wallet first");
+      return;
+    }
+    if (library && connectedChain !== 80001) {
+      toast("Please switch to the Mumbai network");
+      return;
+    }
     setLoading(true);
     await convertLink(library, url, setLinkId, setLoading);
   }
@@ -39,7 +48,11 @@ const Home = () => {
           <div className="w-1/2">
             <div className="flex w-full justify-end items-center">
               <div className="pl-10">
-                <Wallet library={library} setLibrary={setLibrary} />
+                <Wallet
+                  library={library}
+                  setLibrary={setLibrary}
+                  setConnectedChain={setConnectedChain}
+                />
               </div>
             </div>
           </div>
@@ -61,11 +74,12 @@ const Home = () => {
           onChange={(e) => setUrl(e.target.value)}
           type="text"
           placeholder="Long URL"
-          className="px-2 box-border outline-0 py-2 h-full shadow-md shadow-grey-300 rounded-md w-8/12 border mr-2"
+          className="px-2 box-border outline-0 py-2 shadow-md shadow-grey-300 rounded-md w-8/12 border mr-2"
         />
         <button
           onClick={initContract}
-          className="px-2 box-border py-2 h-full shadow-md shadow-blue-100 rounded-md border bg-blue-300 text-white w-3/12 md:w-2/12 lg:w-2/12"
+          className="px-2 box-border py-2  shadow-md shadow-blue-100 rounded-md border  text-white w-3/12 md:w-2/12 lg:w-2/12
+           bg-black hover:bg-blue-400 "
         >
           Go
         </button>
@@ -92,10 +106,7 @@ const Home = () => {
           </div>
         )}
         {linkId && (
-          <div className="flex text-xs md:text-base px-2 flex-col items-center">
-            <div className="my-1  flex items-center space-x-4">
-              Long URL: <span>{url}</span>
-            </div>
+          <div className="flex text-xs md:text-base px-2 flex-col md:flex-row items-center">
             <div className="my-1 flex items-center space-x-4">
               Short URL:{" "}
               <span>{`${window.location.protocol}//${window.location.host}/t/${linkId}`}</span>
@@ -106,10 +117,9 @@ const Home = () => {
                 Copy Link
               </button>
             </div>
-            <div className="my-1 flex items-center space-x-4">
-              <span>QR Code:</span>
+            <div className="my-1 md:my-0 md:ml-4 flex items-center space-x-4">
               <QRCode
-                size={200}
+                size={120}
                 value={`${window.location.protocol}//${window.location.host}/t/${linkId}`}
               />
             </div>
@@ -122,16 +132,14 @@ const Home = () => {
             Recently Shortened URLS
           </div>
           <div className=" flex mt-4 items-center justify-center text-center bg-[#f5f7f8]  rounded-t-lg text-[10px] md:text-[14px] font-light ">
-            <div className="w-1/4 p-4 items-center justify-center">
+            <div className="w-1/3 p-4 items-center justify-center">
               Long URL
             </div>
-            <div className="w-1/4 p-4 items-center justify-center">
+            <div className="w-1/3 p-4 items-center justify-center">
               Short URL
             </div>
-            <div className="w-1/4 p-4 items-center justify-center">
-              Block Height
-            </div>
-            <div className="w-1/4 p-4 items-center justify-center">
+
+            <div className="w-1/3 p-4 items-center justify-center">
               View On Polyscan
             </div>
           </div>
@@ -148,7 +156,7 @@ const Home = () => {
             rel="noreferrer"
             className="hover:underline cursor-pointer"
           >
-            How it works?
+            How it works
           </a>
         </div>
         <div>

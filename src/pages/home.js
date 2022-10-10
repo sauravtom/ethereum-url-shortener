@@ -151,7 +151,7 @@ const Home = () => {
       <div className="mb-4 space-x-4 flex text-gray-600 justify-center items-center">
         <div>
           <a
-            href="https://hackernoon.com/making-a-decentralized-url-shortener-using-ethereum-4fdfccf712a6"
+            href="https://mirror.xyz/0x74B428c4871aD222c62cF85Fe077960b8C73E043/cCXTOR5YYmqDKucHOqxoPT_k1oeH5tDCnlbYMqpNmhQ"
             target="_blank"
             rel="noreferrer"
             className="hover:underline cursor-pointer"
